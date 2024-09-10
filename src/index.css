@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-[#2E2E2E] font-bold mb-2 leading-tight;
+}
+
+h1 {
+  @apply text-3xl md:text-4xl;
+}
+
+h2 {
+  @apply text-2xl md:text-3xl;
+}
+
+h3 {
+  @apply text-lg md:text-xl font-semibold;
+}
+
+h4 {
+  @apply text-base md:text-lg font-medium;
+}
+
+body {
+  @apply bg-secondary font-systemui text-sm md:text-base;
+}
+
+.centered-container {
+  @apply mx-auto px-2 md:px-14 max-w-screen-xl;
+}
+.white-centered-container {
+  @apply mx-auto px-2 md:px-14 max-w-screen-xl bg-white;
+}
+
+.section {
+  @apply mt-8 mb-16;
+}
+
+.cta {
+  @apply px-6 py-3 rounded-full tracking-[0.075em] bg-[#ace3d0] text-[#252a68] hover:bg-[#82d4b9] font-bold w-max md:w-auto;
+}
+
+.active-nav-item::after {
+  content: "";
+  position: absolute;
+  top: calc(100% - 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5px;
+  width: 75%;
+  background-color: #005cb9;
+}
+
+.mapboxgl-popup-close-button {
+  @apply top-2 right-1 text-xl;
+}
+
+@layer {
+  .univLocMap {
+    display: contents;
+  }
+  .map-container {
+    display: block;
+  }
+  .univLocMap .map-container {
+    width: 100%;
+    height: 300px;
+  }
+  .univLocMap #map {
+    top: 0;
+    bottom: 0;
+    width: 100% !important;
+  }
+  .mobImg {
+    width: 96%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* .chatHeaderAndBotResponseColors {
+  @apply !bg-none !bg-primary;
+}
+
+.chatTextboxColor {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  outline: none;
+  text-align: left;
+  font-size: 1rem;
+}
+.chatTextboxColor:focus {
+  border-color: #66ccff;
+  box-shadow: 0 0 0 0.2rem rgba(102, 204, 255, 0.5);
+} */
+
