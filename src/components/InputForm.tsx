@@ -39,7 +39,7 @@ const InputForm = ({ setOpen }: InputFormProps) => {
         templateid: "T16",
       },
       company: "Taurus",
-      leadsource: "action-flow-source 02",
+      leadsource: "action-flow-source 01",
     };
 
     const clientRequestBody = {
@@ -61,17 +61,24 @@ const InputForm = ({ setOpen }: InputFormProps) => {
         templateid: "T16",
       },
       policydata: {
-        policyid: Date.now(),
+        policyid: Date.now().toString(),
       },
       company: "Taurus",
-      clientsource: "action-flow-source 02",
+      clientsource: "action-flow-source 01",
     };
+    console.log(JSON.stringify(leadRequestBody));
+    console.log(JSON.stringify(clientRequestBody));
 
     try {
-      const response = await fetch(
+      const response = fetch(
         `/api/createLeadAndContact?leadBody=${JSON.stringify(leadRequestBody)}&clientBody=${JSON.stringify(clientRequestBody)}`
-      );
-      const resp = await response.json();
+      )
+        .then((res) => {
+          res.json();
+        })
+        .then((res) => console.log(JSON.stringify(res)))
+        .catch((err) => console.log(JSON.stringify(err)));
+
       setIsSubmitting(false);
     } catch (error) {
       console.log(JSON.stringify(error));
