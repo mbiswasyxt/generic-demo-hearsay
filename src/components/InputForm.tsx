@@ -66,8 +66,6 @@ const InputForm = ({ setOpen }: InputFormProps) => {
       company: "Taurus",
       clientsource: "action-flow-source 01",
     };
-    console.log(JSON.stringify(leadRequestBody));
-    console.log(JSON.stringify(clientRequestBody));
 
     try {
       const response = fetch(
@@ -76,10 +74,10 @@ const InputForm = ({ setOpen }: InputFormProps) => {
         .then((res) => {
           res.json();
         })
-        .then((res) => console.log(JSON.stringify(res)))
         .catch((err) => console.log(JSON.stringify(err)));
 
       setIsSubmitting(false);
+      setOpen(false);
     } catch (error) {
       console.log(JSON.stringify(error));
       setIsSubmitting(false);
