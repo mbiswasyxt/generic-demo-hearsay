@@ -1,11 +1,11 @@
 import { useSearchActions } from "@yext/search-headless-react";
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const useVerticalSearch = (vertical: string) => {
   const searchActions = useSearchActions();
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (typeof window !== "undefined") {
       if (vertical) {
         setIsLoaded(false);
