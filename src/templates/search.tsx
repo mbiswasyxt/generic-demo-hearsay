@@ -8,6 +8,7 @@ import {
 import SearchPage from "../components/SearchPage";
 import PageLayout from "../components/page-layout";
 import "../index.css";
+import ModalPage from "../components/ModalPage";
 
 export const config: TemplateConfig = {
   name: "search",

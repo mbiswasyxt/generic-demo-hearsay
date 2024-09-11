@@ -6,9 +6,17 @@ interface CtaProps {
   url: string;
   classNames?: string;
   type?: string;
+  isModal?: boolean;
 }
 
-const Cta = ({ buttonText, style, url, classNames = "", type }: CtaProps) => {
+const Cta = ({
+  buttonText,
+  style,
+  url,
+  classNames = "",
+  type,
+  isModal = false,
+}: CtaProps) => {
   const styleClasses =
     style === "primary"
       ? "rounded w-fit bg-primaryCTA hover:bg-primaryCTA-hover text-white font-bold"
