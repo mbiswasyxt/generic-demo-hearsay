@@ -9,7 +9,7 @@ const InputForm = ({ setOpen }: InputFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
 
     const firstName = formData.get("first-name") as string;
@@ -72,9 +72,10 @@ const InputForm = ({ setOpen }: InputFormProps) => {
         `/api/createLeadAndContact?leadBody=${JSON.stringify(leadRequestBody)}&clientBody=${JSON.stringify(clientRequestBody)}`
       );
       const resp = await response.json();
-      console.log(JSON.stringify(resp));
+      setIsSubmitting(false);
     } catch (error) {
-      console.log();
+      console.log(JSON.stringify(error));
+      setIsSubmitting(false);
     }
   };
 
