@@ -6,12 +6,12 @@ const CreateLeadAndContact = async (
   const { leadBody, clientBody } = request.queryParams; 
 
   const createLead = await fetch(
-    `https://api.hearsaysocial.com/v1/org/${HEARSAY_ORG_ID}/actions/lead/`,
+    `https://api.hearsaysocial.com/v1/org/${YEXT_HEARSAY_ORG_ID}/actions/lead/`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Auth-Token": HEARSAY_API_KEY,
+        "X-Auth-Token": YEXT_HEARSAY_API_KEY,
       },
       body: leadBody,
     }
@@ -31,12 +31,12 @@ const CreateLeadAndContact = async (
 
   // Second API Call - Client
   const createClient = await fetch(
-    `https://api.hearsaysocial.com/v1/org/${HEARSAY_ORG_ID}/actions/client/`,
+    `https://api.hearsaysocial.com/v1/org/${YEXT_HEARSAY_ORG_ID}/actions/client/`,
     {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Auth-Token": HEARSAY_API_KEY,
+        "X-Auth-Token": YEXT_HEARSAY_API_KEY,
       },
       body: clientBody,
     }
