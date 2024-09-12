@@ -85,12 +85,12 @@ const ProfessionalCard = (props: CardProps<any>) => {
             </section>
 
             <nav className=" flex flex-col gap-4 justify-center md:justify-start font-medium leading-loose items-center text-sm text-secondary">
-              <div
+              <button
                 className="w-full md:w-fit text-center md:px-4 md:py-1 md:text-sm rounded-md px-2 py-1  bg-primaryCTA hover:bg-primaryCTA-hover text-white font-bold"
                 onClick={handleOpenModal}
               >
                 Book an appointment
-              </div>
+              </button>
               {isModalOpen && (
                 <ModalPage
                   name={name!}
