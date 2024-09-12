@@ -10,6 +10,7 @@ type ModalPageProps = {
 const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
   const [open, setOpen] = useState(isOpen);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const isDynamic: boolean =
     (import.meta.env.YEXT_PUBLIC_HEARSAY_DATA_IS_DYNAMIC ?? "false") === "true";
 
@@ -48,10 +49,10 @@ const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
       const res = await fetch(
         `/api/createLeadAndContact?leadBody=${JSON.stringify(leadRequestBody)}&clientBody=${JSON.stringify(clientRequestBody)}`
       );
+      setSubmissionSuccess(true); // Indicate successful submission
     } catch (error) {
       console.error(JSON.stringify(error));
     } finally {
-      onClose();
       setIsSubmitting(false);
     }
   };
@@ -64,6 +65,24 @@ const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
           <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all">
             {isSubmitting ? (
               <div className="spinner-border animate-spin inline-block w-4 h-4 border-2 rounded-full border-t-white border-indigo-600"></div>
+            ) : submissionSuccess ? (
+              <div>
+                <h3 className="text-lg font-medium leading-6 text-gray-900">
+                  Thank you!
+                </h3>
+                <p className="mt-2 text-sm text-gray-600">
+                  Your submission was successful. We appreciate the details you
+                  have provided.
+                </p>
+                <div className="mt-6 flex items-center justify-end gap-x-6">
+                  <button
+                    className="rounded-md bg-primary px-3 py-2 text-sm font-semibold text-white shadow-sm "
+                    onClick={onClose}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <div className="space-y-12">
