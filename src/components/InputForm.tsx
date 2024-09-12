@@ -2,10 +2,13 @@ import { useState } from "react";
 
 type InputFormProps = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  name: string;
+  otherDetails: any;
 };
 
-const InputForm = ({ setOpen }: InputFormProps) => {
+const InputForm = ({ setOpen, name, otherDetails }: InputFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const isDynamic = import.meta.env.YEXT_HEARSAY_DATA_IS_DYNAMIC;
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -16,9 +19,7 @@ const InputForm = ({ setOpen }: InputFormProps) => {
     const lastName = formData.get("last-name") as string;
     const phoneNumber = formData.get("phone") as string;
     const email = formData.get("email") as string;
-    const city = formData.get("city") as string;
-    const region = formData.get("region") as string;
-    const postalCode = formData.get("postal-code") as string;
+
     const leadRequestBody = {
       contact: {
         sourceid: "654",
@@ -28,10 +29,10 @@ const InputForm = ({ setOpen }: InputFormProps) => {
         email: email,
       },
       user: {
-        firstname: "Rachel",
-        lastname: "Williams",
-        nickname: "Rachel Williams",
-        email: email,
+        firstname: isDynamic ? otherDetails.name.split(" ")[0] : "Rachel",
+        lastname: isDynamic ? otherDetails.name.split(" ")[1] : "Williams",
+        nickname: isDynamic ? otherDetails.name : "Rachel Williams",
+        email: "dstevens+rachelwilliams@hearsaycorp.com",
         phonenumber: "4025885306",
         sourceid: "ActionsTest",
       },
@@ -50,10 +51,10 @@ const InputForm = ({ setOpen }: InputFormProps) => {
         phonenumber: phoneNumber,
       },
       user: {
-        firstname: "Rachel",
-        lastname: "Williams",
-        nickname: "Rachel Williams",
-        email: email,
+        firstname: isDynamic ? otherDetails.name.split(" ")[0] : "Rachel",
+        lastname: isDynamic ? otherDetails.name.split(" ")[1] : "Williams",
+        nickname: isDynamic ? otherDetails.name : "Rachel Williams",
+        email: "dstevens+rachelwilliams@hearsaycorp.com",
         phonenumber: "4025885306",
         sourceid: "ActionsTest",
       },
@@ -68,18 +69,16 @@ const InputForm = ({ setOpen }: InputFormProps) => {
     };
 
     try {
-      const response = fetch(
-        `/api/createLeadAndContact?leadBody=${JSON.stringify(leadRequestBody)}&clientBody=${JSON.stringify(clientRequestBody)}`
-      )
-        .then((res) => {
-          res.json();
-        })
-        .catch((err) => console.log(JSON.stringify(err)));
+      await fetch(
+        `/api/createLeadAndContact?leadBody=${JSON.stringify(
+          leadRequestBody
+        )}&clientBody=${JSON.stringify(clientRequestBody)}`
+      );
 
-      setIsSubmitting(false);
       setOpen(false);
     } catch (error) {
-      console.log(JSON.stringify(error));
+      console.error(JSON.stringify(error));
+    } finally {
       setIsSubmitting(false);
     }
   };

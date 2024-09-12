@@ -8,7 +8,6 @@ import { onSearchFunc, SearchBar } from "@yext/search-ui-react";
 import { useEffect, useState, useCallback } from "react";
 import ProfessionalPage from "./pages/ProfessionalPage";
 import SearchNav from "./SearchNav";
-import { useTypingEffect } from "../common/useTypeEffect";
 import { useTypingEffectNew } from "../common/useTypeEffectNew";
 import { twMerge } from "tailwind-merge";
 export type VerticalInterface = {

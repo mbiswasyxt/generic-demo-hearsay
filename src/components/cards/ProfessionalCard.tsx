@@ -7,7 +7,7 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import { FormatPhoneNumber } from "../../common/util";
 import Cta from "../cta";
 import ModalPage from "../ModalPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ProfessionalCard = (props: CardProps<any>) => {
   const [open, setOpen] = useState(false);
@@ -27,6 +27,8 @@ const ProfessionalCard = (props: CardProps<any>) => {
     c_linkedTeam,
     slug,
   } = result.rawData;
+
+ 
 
   return (
     <article
@@ -73,20 +75,19 @@ const ProfessionalCard = (props: CardProps<any>) => {
             </section>
 
             <nav className=" flex flex-col gap-4 justify-center md:justify-start font-medium leading-loose items-center text-sm text-secondary">
-              {/* <Cta
-                buttonText="Get In Touch"
-                style="primary"
-                url=""
-                classNames="w-full md:w-fit text-center md:px-4 md:py-1 md:text-sm rounded-md px-2 py-1"
-              /> */}
-
               <div
                 className="w-full md:w-fit text-center md:px-4 md:py-1 md:text-sm rounded-md px-2 py-1  bg-primaryCTA hover:bg-primaryCTA-hover text-white font-bold"
                 onClick={() => setOpen(true)}
               >
                 Book an appointment
               </div>
-              {open && <ModalPage isOpen={open} />}
+              {open && (
+                <ModalPage
+                  name={name!}
+                  otherDetails={result.rawData}
+                  isOpen={open}
+                />
+              )}
               <Cta
                 buttonText="View Profile"
                 style="secondary"
