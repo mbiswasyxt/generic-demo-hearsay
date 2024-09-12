@@ -11,8 +11,6 @@ type Props = {
   className?: string;
 };
 const PageLayout = ({ _site, children, className }: Props) => {
-  const { c_heroBanners } = _site;
-
   return (
     <SearchHeadlessProvider searcher={provideHeadless(searchConfig)}>
       <div

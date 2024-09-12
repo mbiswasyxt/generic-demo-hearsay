@@ -1,4 +1,8 @@
-import { Disclosure } from "@headlessui/react";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { Image } from "@yext/pages-components";
 import { CardProps } from "@yext/search-ui-react";
@@ -7,10 +11,10 @@ import { FaRegEnvelope } from "react-icons/fa6";
 import { FormatPhoneNumber } from "../../common/util";
 import Cta from "../cta";
 import ModalPage from "../ModalPage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ProfessionalCard = (props: CardProps<any>) => {
-  const [open, setOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { result } = props;
   const { name } = result;
   const {
@@ -28,7 +32,13 @@ const ProfessionalCard = (props: CardProps<any>) => {
     slug,
   } = result.rawData;
 
- 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <article
@@ -77,15 +87,15 @@ const ProfessionalCard = (props: CardProps<any>) => {
             <nav className=" flex flex-col gap-4 justify-center md:justify-start font-medium leading-loose items-center text-sm text-secondary">
               <div
                 className="w-full md:w-fit text-center md:px-4 md:py-1 md:text-sm rounded-md px-2 py-1  bg-primaryCTA hover:bg-primaryCTA-hover text-white font-bold"
-                onClick={() => setOpen(true)}
+                onClick={handleOpenModal}
               >
                 Book an appointment
               </div>
-              {open && (
+              {isModalOpen && (
                 <ModalPage
                   name={name!}
-                  otherDetails={result.rawData}
-                  isOpen={open}
+                  isOpen={isModalOpen}
+                  onClose={handleCloseModal}
                 />
               )}
               <Cta
@@ -187,7 +197,7 @@ const ProfessionalCard = (props: CardProps<any>) => {
       <Disclosure>
         {({ open }) => (
           <>
-            <Disclosure.Button
+            <DisclosureButton
               className="md:flex w-fit px-4 py-2 items-center rounded-lg hidden"
               aria-expanded={open}
               aria-controls="about-me"
@@ -197,13 +207,13 @@ const ProfessionalCard = (props: CardProps<any>) => {
                 className={`${open ? "rotate-180 transform" : ""} h-6 w-6 text-primary`}
                 aria-hidden="true"
               />
-            </Disclosure.Button>
-            <Disclosure.Panel
+            </DisclosureButton>
+            <DisclosurePanel
               id="about-me"
               className="px-4 pb-2 text-sm text-gray-500"
             >
               {description}
-            </Disclosure.Panel>
+            </DisclosurePanel>
           </>
         )}
       </Disclosure>
