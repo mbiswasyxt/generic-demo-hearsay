@@ -57,11 +57,11 @@ const ProfessionalCard = (props: CardProps<any>) => {
                 </p>
               </address>
               <section className="flex flex-col gap-2 font-normal text-slate-500">
-                <p className="flex gap-1 text-sm">
+                <div className="flex gap-1 text-sm">
                   <span className="font-bold">Direct: </span>
                   <FormatPhoneNumber mainPhone={mainPhone} />
-                </p>
-                <p className="flex gap-1 text-sm">
+                </div>
+                <div className="flex gap-1 text-sm">
                   <span className="font-bold">Branch: </span>
                   <FormatPhoneNumber
                     mainPhone={
@@ -70,7 +70,7 @@ const ProfessionalCard = (props: CardProps<any>) => {
                         : c_serviceAreasProfessionals[0].mainPhone
                     }
                   />
-                </p>
+                </div>
               </section>
             </section>
 
