@@ -95,7 +95,7 @@ const ProfessionalCard = (props: CardProps<any>) => {
               {isModalOpen && (
                 <ModalPage
                   name={name!}
-                  email={emails[0]}
+                  email={emails[0] || 'contact%2B@hearsay.com'}
                   isOpen={isModalOpen}
                   onClose={handleCloseModal}
                 />
