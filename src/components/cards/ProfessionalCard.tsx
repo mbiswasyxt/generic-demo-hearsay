@@ -30,6 +30,7 @@ const ProfessionalCard = (props: CardProps<any>) => {
     description,
     c_linkedTeam,
     slug,
+    emails,
   } = result.rawData;
 
   const handleOpenModal = () => {
@@ -94,6 +95,7 @@ const ProfessionalCard = (props: CardProps<any>) => {
               {isModalOpen && (
                 <ModalPage
                   name={name!}
+                  email={emails[0]}
                   isOpen={isModalOpen}
                   onClose={handleCloseModal}
                 />

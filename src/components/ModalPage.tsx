@@ -5,9 +5,15 @@ type ModalPageProps = {
   isOpen?: boolean;
   name: string;
   onClose: () => void;
+  email: string;
 };
 
-const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
+const ModalPage = ({
+  isOpen = false,
+  name,
+  onClose,
+  email = "test@hearsay.com",
+}: ModalPageProps) => {
   const [open, setOpen] = useState(isOpen);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
@@ -19,9 +25,9 @@ const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
     setIsSubmitting(true);
     const formData = new FormData(e.currentTarget);
 
-    const leadRequestBody = {
+    const clientRequestBody = {
       contact: {
-        sourceid: "654",
+        sourceid: Date.now().toString(),
         firstname: formData.get("first-name") as string,
         lastname: formData.get("last-name") as string,
         phonenumber: formData.get("phone") as string,
@@ -31,25 +37,21 @@ const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
         firstname: isDynamic ? name.split(" ")[0] : "Rachel",
         lastname: isDynamic ? name.split(" ")[1] : "Williams",
         nickname: isDynamic ? name : "Rachel Williams",
-        email: "dstevens%2Brachelwilliams@hearsaycorp.com",
+        email: isDynamic ? email : "dstevens%2Brachelwilliams@hearsaycorp.com",
         phonenumber: "4025885306",
         sourceid: "ActionsTest",
       },
       messagecontext: { templateid: "T16" },
       company: "Taurus",
-      leadsource: "action-flow-source 01",
-    };
-
-    const clientRequestBody = {
-      ...leadRequestBody,
+      clientSource: "action-flow-source 01",
       policydata: { policyid: Date.now().toString() },
     };
 
     try {
       const res = await fetch(
-        `/api/createLeadAndContact?leadBody=${JSON.stringify(leadRequestBody)}&clientBody=${JSON.stringify(clientRequestBody)}`
+        `/api/createLeadAndContact?&clientBody=${JSON.stringify(clientRequestBody)}`
       );
-      setSubmissionSuccess(true); // Indicate successful submission
+      setSubmissionSuccess(true);
     } catch (error) {
       console.error(JSON.stringify(error));
     } finally {
