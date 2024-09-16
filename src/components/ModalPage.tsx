@@ -31,7 +31,7 @@ const ModalPage = ({ isOpen = false, name, onClose }: ModalPageProps) => {
         firstname: isDynamic ? name.split(" ")[0] : "Rachel",
         lastname: isDynamic ? name.split(" ")[1] : "Williams",
         nickname: isDynamic ? name : "Rachel Williams",
-        email: "dstevens+rachelwilliams@hearsaycorp.com",
+        email: "dstevens%2Brachelwilliams@hearsaycorp.com",
         phonenumber: "4025885306",
         sourceid: "ActionsTest",
       },
