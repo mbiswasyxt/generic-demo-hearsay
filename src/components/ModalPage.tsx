@@ -21,9 +21,6 @@ const ModalPage = ({
     import.meta.env.YEXT_PUBLIC_HEARSAY_DATA_IS_DYNAMIC === "true"
       ? true
       : false;
-  console.log(JSON.stringify(typeof isDynamic));
-  console.log(JSON.stringify(isDynamic));
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
