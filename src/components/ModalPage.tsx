@@ -21,6 +21,8 @@ const ModalPage = ({
     import.meta.env.YEXT_PUBLIC_HEARSAY_DATA_IS_DYNAMIC === "true"
       ? true
       : false;
+  console.log(import.meta.env.YEXT_PUBLIC_HEARSAY_DATA_IS_DYNAMIC);
+  console.log('no imprt',YEXT_PUBLIC_HEARSAY_DATA_IS_DYNAMIC);
   console.log(typeof isDynamic);
   console.log(isDynamic);
 
