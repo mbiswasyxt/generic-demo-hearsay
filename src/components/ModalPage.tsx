@@ -19,6 +19,7 @@ const ModalPage = ({
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const isDynamic: boolean =
     (import.meta.env.YEXT_PUBLIC_HEARSAY_DATA_IS_DYNAMIC ?? "false") === "true";
+  console.log(isDynamic);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,16 +48,18 @@ const ModalPage = ({
       policydata: { policyid: Date.now().toString() },
     };
 
-    try {
-      const res = await fetch(
-        `/api/createLeadAndContact?&clientBody=${JSON.stringify(clientRequestBody)}`
-      );
-      setSubmissionSuccess(true);
-    } catch (error) {
-      console.error(JSON.stringify(error));
-    } finally {
-      setIsSubmitting(false);
-    }
+    console.log(JSON.stringify(clientRequestBody));
+
+    // try {
+    //   const res = await fetch(
+    //     `/api/createLeadAndContact?&clientBody=${JSON.stringify(clientRequestBody)}`
+    //   );
+    //   setSubmissionSuccess(true);
+    // } catch (error) {
+    //   console.error(JSON.stringify(error));
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
 
   return (
