@@ -13,6 +13,7 @@ type Props = {
 const PageLayout = ({ _site, children, className }: Props) => {
   return (
     <SearchHeadlessProvider searcher={provideHeadless(searchConfig)}>
+      <img src="https://i.imgur.com/IXJQ457.png" alt="" className="w-full " />
       <div
         className={twMerge(
           "min-h-screen bg-secondary text-secondary-text",
