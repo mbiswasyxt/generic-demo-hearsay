@@ -91,12 +91,12 @@ const ModalPage = ({
                 <div className="space-y-12">
                   <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">
-                      Personal Information
+                      Ready to connect?
                     </h2>
                     <p className="mt-1 text-sm leading-6 text-gray-600">
-                      Use a permanent address where you can receive mail.
+                      We'd be happy to setup a time!
                     </p>
-                    <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 ">
+                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 ">
                       <InputField
                         id="first-name"
                         label="First name"
@@ -114,6 +114,11 @@ const ModalPage = ({
                         type="email"
                       />
                     </div>
+                    <p className="mt-1 text-sm leading-6 text-gray-600  ">
+                      By submitting this form, you agree to be contacted by 
+                      Taurus Financial. <br/>Message & data rates may apply. Message
+                      frequency varies.
+                    </p>
                   </div>
                 </div>
                 <div className="mt-6 flex items-center justify-end gap-x-6">
