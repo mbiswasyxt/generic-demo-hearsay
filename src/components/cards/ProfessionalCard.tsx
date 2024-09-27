@@ -40,7 +40,7 @@ const ProfessionalCard = (props: CardProps<any>) => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
+  // console.log("---------->",c_serviceAreasProfessionals)
   return (
     <article
       className="flex flex-col border shadow-md p-4"
@@ -74,13 +74,13 @@ const ProfessionalCard = (props: CardProps<any>) => {
                 </div>
                 <div className="flex gap-1 text-sm">
                   <span className="font-bold">Branch: </span>
-                  <FormatPhoneNumber
+                  {/* <FormatPhoneNumber
                     mainPhone={
                       c_linkedTeam
                         ? c_linkedTeam[0].mainPhone
-                        : c_serviceAreasProfessionals[0].mainPhone
+                        : ""
                     }
-                  />
+                  /> */}
                 </div>
               </section>
             </section>
@@ -124,12 +124,12 @@ const ProfessionalCard = (props: CardProps<any>) => {
                   <span className="font-bold">Direct: </span>
                   {mainPhone}
                 </p>
-                <p className="flex gap-1 text-sm">
+                {/* <p className="flex gap-1 text-sm">
                   <span className="font-bold">Branch: </span>
                   {c_linkedTeam
                     ? c_linkedTeam[0].mainPhone
                     : c_serviceAreasProfessionals[0].mainPhone}
-                </p>
+                </p> */}
               </section>
             </section>
             <section className="hidden md:block">
@@ -187,12 +187,12 @@ const ProfessionalCard = (props: CardProps<any>) => {
                 />
               </a>
             </nav>
-            <p className="text-xs text-slate-500 italic hidden md:block">
+            {/* <p className="text-xs text-slate-500 italic hidden md:block">
               {name} is registered to do business in{" "}
               {c_serviceAreasProfessionals
                 .map((entry: any) => entry.address.region)
                 .join(", ")}
-            </p>
+            </p> */}
           </footer>
         </section>
       </header>
